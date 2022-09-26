@@ -1,13 +1,11 @@
 package br.fatec.financas.model;
- 
-import javax.persistence.DiscriminatorColumn;
+
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="nm_pertence_a_classe", length=20)
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Cliente extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 	
