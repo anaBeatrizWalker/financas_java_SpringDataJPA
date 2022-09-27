@@ -1,11 +1,14 @@
 package br.fatec.financas.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Cliente extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 	
@@ -13,7 +16,19 @@ public abstract class Cliente extends AbstractEntity {
 	
 	private String endereco;
 	
+	@OneToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(unique = true) //um cliente associado a somente uma conta
+	private Conta conta;
+	
 	public Cliente() { }
+
+	public Conta getConta() {
+		return conta;
+	}
+
+	public void setConta(Conta conta) {
+		this.conta = conta;
+	}
 
 	public String getNome() {
 		return nome;
