@@ -1,7 +1,15 @@
 package br.fatec.financas.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 //import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 //import javax.persistence.Table;
 
 //@Table(name="tb_conta")
@@ -18,9 +26,23 @@ public class Conta extends AbstractEntity {
 	//@Column(name="vl_saldo")
 	private Float saldo;
 	
+	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
+	@JoinColumn(name = "conta_id") //relacionamento unidirecional (sem tabela extra)
+	private List<Movimentacao> movimentacao;
+	
 	public Conta() { }
 	
 	// getters e setters
+	@JsonIgnore
+	public List<Movimentacao> getMovimentacao() {
+		return movimentacao;
+	}
+
+	@JsonProperty
+	public void setMovimentacao(List<Movimentacao> movimentacao) {
+		this.movimentacao = movimentacao;
+	}
+	
 	public Integer getAgencia() {
 		return agencia;
 	}
