@@ -1,11 +1,15 @@
 package br.fatec.financas.model;
 
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,6 +36,12 @@ public class Movimentacao extends AbstractEntity{
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Conta conta;
 	
+	@ManyToMany
+	@JoinTable(name = "tb_movimentacao_categoria",
+				joinColumns=@JoinColumn(name = "FK_movimentacao_id"),
+				inverseJoinColumns=@JoinColumn(name = "FK_categoria_id"))
+	private List<Categoria> categoria;
+	
 	public Movimentacao() {}
 
 	@JsonIgnore
@@ -42,6 +52,16 @@ public class Movimentacao extends AbstractEntity{
 	@JsonProperty
 	public void setConta(Conta conta) {
 		this.conta = conta;
+	}
+	
+	@JsonIgnore
+	public List<Categoria> getCategoria() {
+		return categoria;
+	}
+	
+	@JsonProperty
+	public void setCategoria(List<Categoria> categoria) {
+		this.categoria = categoria;
 	}
 
 	public Float getValor() {
