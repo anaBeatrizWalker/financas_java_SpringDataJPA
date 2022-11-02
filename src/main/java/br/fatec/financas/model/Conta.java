@@ -5,11 +5,13 @@ import java.util.List;
 import javax.persistence.CascadeType;
 //import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 //import javax.persistence.Table;
 
 //@Table(name="tb_conta")
 @Entity
+@NamedQuery(name="Conta.listarPorAgencia", query="select c from Conta c where c.agencia=?1")
 public class Conta extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 	

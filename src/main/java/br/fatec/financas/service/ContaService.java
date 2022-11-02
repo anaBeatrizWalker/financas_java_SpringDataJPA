@@ -78,4 +78,8 @@ public class ContaService implements ServiceInterface<Conta> {
 			throw new IllegalArgumentException("Conta não encontrada.");
 		}
 	}
+	
+	public List<Conta> listarPorAgencia(Integer agencia) { 
+		return repository.listarPorAgencia(agencia); 
+	}
 }
