@@ -106,4 +106,14 @@ public class ContaController implements ControllerInterface<Conta> {
 	public ResponseEntity<List<Conta>> getByAgencia(@PathVariable("agencia") Integer agencia){
 		return ResponseEntity.ok(service.listarPorAgencia(agencia));
 	}
+	
+	@GetMapping(value = "/agencia/{agencia}/{from}/{to}") 
+	public ResponseEntity<List<Conta>>getByAgenciaESaldo(@PathVariable("agencia") Integer agencia, @PathVariable("from") Float from, @PathVariable("to") Float to) {
+		return ResponseEntity.ok(service.listarPorAgenciaESaldo(agencia, from, to));
+	}
+	
+	@GetMapping(value = "/cliente/{nome}")
+	public ResponseEntity<List<Conta>>getByNomeCliente(@PathVariable("nome") String nome){
+		return ResponseEntity.ok(service.listarPorNomeCliente(nome));
+	}
 }

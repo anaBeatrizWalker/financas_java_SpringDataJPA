@@ -10,4 +10,6 @@ import br.fatec.financas.model.Conta;
 @Repository
 public interface ContaRepository extends JpaRepository<Conta, Long>{
 	List<Conta> listarPorAgencia(Integer agencia);
+	List<Conta> listarPorAgenciaESaldo(Integer agencia, Float from, Float to);
+	List<Conta> listarPorNomeCliente(String nome);
 }

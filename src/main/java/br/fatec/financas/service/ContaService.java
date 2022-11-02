@@ -82,4 +82,12 @@ public class ContaService implements ServiceInterface<Conta> {
 	public List<Conta> listarPorAgencia(Integer agencia) { 
 		return repository.listarPorAgencia(agencia); 
 	}
+	
+	public List<Conta> listarPorAgenciaESaldo(Integer agencia, Float from, Float to) {
+		return repository.listarPorAgenciaESaldo(agencia, from, to);
+	}
+
+	public List<Conta> listarPorNomeCliente(String nome){
+		return repository.listarPorNomeCliente('%' + nome + '%');
+	}
 }
