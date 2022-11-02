@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import br.fatec.financas.model.Conta;
 import br.fatec.financas.repository.ContaRepository;
@@ -22,8 +24,8 @@ public class ContaService implements ServiceInterface<Conta> {
 	}
 	
 	@Override
-	public List<Conta> findAll(){
-		return repository.findAll();
+	public Page<Conta> findAll(Pageable pageable){
+		return repository.findAll(pageable);
 	}
 	
 	@Override

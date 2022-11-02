@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,12 +28,11 @@ public class ContaController implements ControllerInterface<Conta> {
 	@Autowired
 	private ContaService service;
 	
-	//Lista todas as contas
+	//Lista todas as contas, agora paginadas
 	@Override
-	@GetMapping 
-	public ResponseEntity<List<Conta>> getAll(){
-		return ResponseEntity.ok(service.findAll());
-		//resposta: lista de objetos da classe Conta
+	@GetMapping(value = "/page") 
+	public ResponseEntity<Page<Conta>> getAll(Pageable pageable){
+		return ResponseEntity.ok(service.findAll(pageable));
 	}
 	
 	//Lista uma conta por id
