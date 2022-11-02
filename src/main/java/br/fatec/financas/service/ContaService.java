@@ -24,7 +24,12 @@ public class ContaService implements ServiceInterface<Conta> {
 	}
 	
 	@Override
-	public Page<Conta> findAll(Pageable pageable){
+	public List<Conta> findAll(){
+		return (List<Conta>) repository.findAll();
+	}
+	
+	@Override
+	public Page<Conta> findAllPaginated(Pageable pageable){
 		return repository.findAll(pageable);
 	}
 	

@@ -28,11 +28,16 @@ public class ContaController implements ControllerInterface<Conta> {
 	@Autowired
 	private ContaService service;
 	
+	@GetMapping 
+	public ResponseEntity<List<Conta>> getAll(){
+		return ResponseEntity.ok(service.findAll());
+	}
+	
 	//Lista todas as contas, agora paginadas
 	@Override
 	@GetMapping(value = "/page") 
-	public ResponseEntity<Page<Conta>> getAll(Pageable pageable){
-		return ResponseEntity.ok(service.findAll(pageable));
+	public ResponseEntity<Page<Conta>> getAllPaginated(Pageable pageable){
+		return ResponseEntity.ok(service.findAllPaginated(pageable));
 	}
 	
 	//Lista uma conta por id

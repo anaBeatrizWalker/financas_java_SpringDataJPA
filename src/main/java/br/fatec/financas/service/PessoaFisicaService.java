@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.fatec.financas.model.PessoaFisica;
@@ -24,7 +26,12 @@ public class PessoaFisicaService implements ServiceInterface<PessoaFisica> {
 		
 		@Override
 		public List<PessoaFisica> findAll(){
-			return repository.findAll();
+			return (List<PessoaFisica>) repository.findAll();
+		}
+		
+		@Override
+		public Page<PessoaFisica> findAllPaginated(Pageable pageable){
+			return repository.findAll(pageable);
 		}
 		
 		@Override

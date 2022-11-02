@@ -1,9 +1,11 @@
 package br.fatec.financas.service;
 
-import java.util.List; 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.fatec.financas.model.PessoaJuridica;
@@ -24,7 +26,12 @@ public class PessoaJuridicaService implements ServiceInterface<PessoaJuridica> {
 		
 		@Override
 		public List<PessoaJuridica> findAll(){
-			return repository.findAll();
+			return (List<PessoaJuridica>) repository.findAll();
+		}
+		
+		@Override
+		public Page<PessoaJuridica> findAllPaginated(Pageable pageable){
+			return repository.findAll(pageable);
 		}
 		
 		@Override

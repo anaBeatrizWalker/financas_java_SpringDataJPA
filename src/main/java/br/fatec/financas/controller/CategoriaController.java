@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,7 +32,12 @@ public class CategoriaController implements ControllerInterface<Categoria> {
 	public ResponseEntity<List<Categoria>> getAll() {
 		return ResponseEntity.ok(service.findAll());
 	}
-
+	
+	@GetMapping(value = "/page") 
+	public ResponseEntity<Page<Categoria>> getAllPaginated(Pageable pageable){
+		return ResponseEntity.ok(service.findAllPaginated(pageable));
+	}
+	
 	@Override
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<?> get(@PathVariable("id") Long id) {
