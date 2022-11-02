@@ -5,18 +5,11 @@ import java.util.List;
 import javax.persistence.CascadeType;
 //import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.NamedQuery;
-import javax.persistence.NamedQueries;
 import javax.persistence.OneToMany;
 //import javax.persistence.Table;
 
 //@Table(name="tb_conta")
 @Entity
-@NamedQueries({
-	@NamedQuery(name="Conta.listarPorAgencia", query="select c from Conta c where c.agencia=?1"), 
-	@NamedQuery(name="Conta.listarPorAgenciaESaldo", query="select c from Conta c where c.agencia=?1 and" + " c.saldo between ?2 and ?3"),
-	@NamedQuery(name="Conta.listarPorNomeCliente", query="select c from Conta c join Cliente cc on" + " cc.conta = c where cc.nome like ?1")
-}) 
 public class Conta extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 	
