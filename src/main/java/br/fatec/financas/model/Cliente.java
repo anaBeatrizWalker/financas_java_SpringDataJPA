@@ -6,6 +6,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +23,12 @@ import lombok.ToString;
 public abstract class Cliente extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 	
+	@NotBlank
+	@Size(min = 4, max = 50)
 	private String nome;
+	
+	@NotBlank
+	@Size(min = 5, max = 100)
 	private String endereco;
 	
 	@ToString.Exclude

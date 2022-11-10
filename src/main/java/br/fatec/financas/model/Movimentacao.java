@@ -13,6 +13,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -30,13 +35,18 @@ public class Movimentacao extends AbstractEntity{
 	private static final long serialVersionUID = 1L;
 	
 	@ToString.Exclude
+	@Min(1)
+	@Max(100000)
 	private Float valor;
 	
+	@NotBlank
 	@Enumerated(EnumType.STRING)
 	private TipoMovimentacao tipo;
-	
+
+	@Size(min = 4, max = 100)
 	private String descricao;
 	
+	@Past
 	@ToString.Exclude
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")

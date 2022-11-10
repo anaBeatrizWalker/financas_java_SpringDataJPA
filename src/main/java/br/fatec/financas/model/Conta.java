@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,9 +20,13 @@ public class Conta extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 	
 	@Getter @Setter
+	@Min(100)
+	@Max(100000)
 	private Integer agencia;
 	
 	@Getter @Setter
+	@Min(100)
+	@Max(1000)
 	private String numero;
 	
 	@ToString.Exclude
