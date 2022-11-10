@@ -15,6 +15,14 @@ public class Categoria extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(length = 50)
+	//Validação do banco de dados
+	@Column(length = 50, nullable=false)
 	private String nome;
+	
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 }
